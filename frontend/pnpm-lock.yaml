@@ -23,6 +23,9 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.139.7
         version: 1.139.7(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@tanstack/react-router-devtools':
+        specifier: ^1.139.9
+        version: 1.139.9(@tanstack/react-router@1.139.7(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@tanstack/router-core@1.139.7)(@types/node@24.10.1)(csstype@3.2.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(solid-js@1.9.10)(sugarss@5.0.1(postcss@8.5.6))(tsx@4.20.6)
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -649,6 +652,18 @@ packages:
     peerDependencies:
       react: ^18 || ^19
 
+  '@tanstack/react-router-devtools@1.139.9':
+    resolution: {integrity: sha512-LTtZgux868FVFv/xHA/xl4ZdLW+PMSaTOdyEEKd4cMQSscxWypPqgZq4NCDFk2v5kP95kpHbsP02FtNJVQmNEA==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      '@tanstack/react-router': ^1.139.9
+      '@tanstack/router-core': ^1.139.7
+      react: '>=18.0.0 || >=19.0.0'
+      react-dom: '>=18.0.0 || >=19.0.0'
+    peerDependenciesMeta:
+      '@tanstack/router-core':
+        optional: true
+
   '@tanstack/react-router@1.139.7':
     resolution: {integrity: sha512-5vhwIAwoxWl7oeIZRNgk5wh9TCkaAinK9qbfdKuKzwGtMHqnv1bRrfKwam3/MaMwHCmvnNfnFj0RYfnBA/ilEg==}
     engines: {node: '>=12'}
@@ -665,6 +680,17 @@ packages:
   '@tanstack/router-core@1.139.7':
     resolution: {integrity: sha512-mqgsJi4/B2Jo6PXRUs1AsWA+06nqiqVZe1aXioA3vR6PesNeKUSXWfmIoYF6wOx3osiV0BnwB1JCBrInCOQSWA==}
     engines: {node: '>=12'}
+
+  '@tanstack/router-devtools-core@1.139.7':
+    resolution: {integrity: sha512-Tx6+rCyjthlH7KS9Jz6YdT2KQ6rZQ66F+XJOj7Rel8zGAvyqx8USzcqTRvC+QjaU1jIJq+mNPWpMdKkkxPSOVA==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      '@tanstack/router-core': ^1.139.7
+      csstype: ^3.0.10
+      solid-js: '>=1.9.5'
+    peerDependenciesMeta:
+      csstype:
+        optional: true
 
   '@tanstack/router-generator@1.139.7':
     resolution: {integrity: sha512-xnmF1poNH/dHtwFxecCcRsaLRIXVnXRZiWYUpvtyaPv4pQYayCrFQCg2ygDbCV0/8H7ctMBJh5MIL7GgPR7+xw==}
@@ -1248,6 +1274,11 @@ packages:
     resolution: {integrity: sha512-DpLKbNU4WylpxJykQujfCcwYWiV/Jhm50Goo0wrVILAv5jOr9d+H+UR3PhSCD2rCCEIg0uc+G+muBTwD54JhDQ==}
     engines: {node: '>= 0.4'}
 
+  goober@2.1.18:
+    resolution: {integrity: sha512-2vFqsaDVIT9Gz7N6kAL++pLpp41l3PfDuusHcjnGLfR6+huZkl6ziX+zgVC3ZxpqWhzH6pyDdGrCeDhMIvwaxw==}
+    peerDependencies:
+      csstype: ^3.0.10
+
   gopd@1.2.0:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
     engines: {node: '>= 0.4'}
@@ -1739,11 +1770,21 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  seroval-plugins@1.3.3:
+    resolution: {integrity: sha512-16OL3NnUBw8JG1jBLUoZJsLnQq0n5Ua6aHalhJK4fMQkz1lqR7Osz1sA30trBtd9VUDc2NgkuRCn8+/pBwqZ+w==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      seroval: ^1.0
+
   seroval-plugins@1.4.0:
     resolution: {integrity: sha512-zir1aWzoiax6pbBVjoYVd0O1QQXgIL3eVGBMsBsNmM8Ukq90yGaWlfx0AB9dTS8GPqrOrbXn79vmItCUP9U3BQ==}
     engines: {node: '>=10'}
     peerDependencies:
       seroval: ^1.0
+
+  seroval@1.3.2:
+    resolution: {integrity: sha512-RbcPH1n5cfwKrru7v7+zrZvjLurgHhGyso3HTyGtRivGWgYjbOmGuivCQaORNELjNONoK35nj28EoWul9sb1zQ==}
+    engines: {node: '>=10'}
 
   seroval@1.4.0:
     resolution: {integrity: sha512-BdrNXdzlofomLTiRnwJTSEAaGKyHHZkbMXIywOh7zlzp4uZnXErEwl9XZ+N1hJSNpeTtNxWvVwN0wUzAIQ4Hpg==}
@@ -1784,6 +1825,9 @@ packages:
   side-channel@1.1.0:
     resolution: {integrity: sha512-ZX99e6tRweoUXqR+VBrslhda51Nh5MTQwou5tnUDgbtyM0dBgmhEDtWGP/xbKn6hqfPRHujUNwz5fy/wbbhnpw==}
     engines: {node: '>= 0.4'}
+
+  solid-js@1.9.10:
+    resolution: {integrity: sha512-Coz956cos/EPDlhs6+jsdTxKuJDPT7B5SVIWgABwROyxjY7Xbr8wkzD68Et+NxnV7DLJ3nJdAC2r9InuV/4Jew==}
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -2594,6 +2638,30 @@ snapshots:
       '@tanstack/query-core': 5.90.11
       react: 19.2.0
 
+  '@tanstack/react-router-devtools@1.139.9(@tanstack/react-router@1.139.7(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@tanstack/router-core@1.139.7)(@types/node@24.10.1)(csstype@3.2.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(solid-js@1.9.10)(sugarss@5.0.1(postcss@8.5.6))(tsx@4.20.6)':
+    dependencies:
+      '@tanstack/react-router': 1.139.7(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@tanstack/router-devtools-core': 1.139.7(@tanstack/router-core@1.139.7)(@types/node@24.10.1)(csstype@3.2.3)(solid-js@1.9.10)(sugarss@5.0.1(postcss@8.5.6))(tsx@4.20.6)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+      vite: 7.2.4(@types/node@24.10.1)(sugarss@5.0.1(postcss@8.5.6))(tsx@4.20.6)
+    optionalDependencies:
+      '@tanstack/router-core': 1.139.7
+    transitivePeerDependencies:
+      - '@types/node'
+      - csstype
+      - jiti
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - solid-js
+      - stylus
+      - sugarss
+      - terser
+      - tsx
+      - yaml
+
   '@tanstack/react-router@1.139.7(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@tanstack/history': 1.139.0
@@ -2621,6 +2689,29 @@ snapshots:
       seroval-plugins: 1.4.0(seroval@1.4.0)
       tiny-invariant: 1.3.3
       tiny-warning: 1.0.3
+
+  '@tanstack/router-devtools-core@1.139.7(@tanstack/router-core@1.139.7)(@types/node@24.10.1)(csstype@3.2.3)(solid-js@1.9.10)(sugarss@5.0.1(postcss@8.5.6))(tsx@4.20.6)':
+    dependencies:
+      '@tanstack/router-core': 1.139.7
+      clsx: 2.1.1
+      goober: 2.1.18(csstype@3.2.3)
+      solid-js: 1.9.10
+      tiny-invariant: 1.3.3
+      vite: 7.2.4(@types/node@24.10.1)(sugarss@5.0.1(postcss@8.5.6))(tsx@4.20.6)
+    optionalDependencies:
+      csstype: 3.2.3
+    transitivePeerDependencies:
+      - '@types/node'
+      - jiti
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - terser
+      - tsx
+      - yaml
 
   '@tanstack/router-generator@1.139.7':
     dependencies:
@@ -3460,6 +3551,10 @@ snapshots:
       define-properties: 1.2.1
       gopd: 1.2.0
 
+  goober@2.1.18(csstype@3.2.3):
+    dependencies:
+      csstype: 3.2.3
+
   gopd@1.2.0: {}
 
   graphemer@1.4.0: {}
@@ -3967,9 +4062,15 @@ snapshots:
 
   semver@7.7.3: {}
 
+  seroval-plugins@1.3.3(seroval@1.3.2):
+    dependencies:
+      seroval: 1.3.2
+
   seroval-plugins@1.4.0(seroval@1.4.0):
     dependencies:
       seroval: 1.4.0
+
+  seroval@1.3.2: {}
 
   seroval@1.4.0: {}
 
@@ -4028,6 +4129,12 @@ snapshots:
       side-channel-list: 1.0.0
       side-channel-map: 1.0.1
       side-channel-weakmap: 1.0.2
+
+  solid-js@1.9.10:
+    dependencies:
+      csstype: 3.2.3
+      seroval: 1.3.2
+      seroval-plugins: 1.3.3(seroval@1.3.2)
 
   source-map-js@1.2.1: {}
 

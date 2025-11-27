@@ -1,8 +1,17 @@
 import { createRootRouteWithContext } from '@tanstack/react-router'
-import MainLayout from '../layouts/AppLayout/AppLayout'
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import type { AuthContextProps } from '../contexts/AuthContext'
+import AppLayout from '../layouts/AppLayout/AppLayout'
 
-export const Route = createRootRouteWithContext()({
+export interface RouterContext {
+	auth: AuthContextProps
+}
+
+export const Route = createRootRouteWithContext<RouterContext>()({
 	component: () => (
-		<MainLayout />
+		<>
+			<AppLayout />
+			<TanStackRouterDevtools position='bottom-right' initialIsOpen={false} />
+		</>
 	)
 })
