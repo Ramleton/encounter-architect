@@ -1,0 +1,31 @@
+.navbar {
+  display: flex;
+  width: 80px;
+  height: 100vh;
+  position: relative;
+  flex-direction: column;
+}
+
+.navbarMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbarBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link {
+  border-radius: 8px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 150ms ease, color 150ms ease;
+}
