@@ -6,7 +6,9 @@ export default function MainLayout() {
 	return (
 		<div className={classes.appLayoutContainer}>
 			<Navbar />
-			<Outlet />
+			<div className={classes.appLayoutContent}>
+				<Outlet />
+			</div>
 		</div>
 	)
 }
