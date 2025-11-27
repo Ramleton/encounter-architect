@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useMemo, useState, type ReactNode } from 'react'
 import ThemeContext from '../contexts/ThemeContext'
 import { darkTheme, lightTheme, type ThemeMode } from '../types/theme'
 
@@ -13,7 +13,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 		setThemeMode(prev => (prev === 'light' ? 'dark' : 'light'))
 	}
 
-	const theme = themeMode === 'light' ? lightTheme : darkTheme
+	const theme = useMemo(() => themeMode === 'light' ? lightTheme : darkTheme, [themeMode])
 
 	return (
 		<ThemeContext.Provider value={{ themeMode, theme, toggleTheme }}>

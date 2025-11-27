@@ -1,10 +1,10 @@
 import { Outlet } from '@tanstack/react-router'
 import Navbar from '../../components/Navbar/Navbar'
-import './AppLayout.module.css'
+import classes from './AppLayout.module.css'
 
 export default function MainLayout() {
 	return (
-		<div className='app-layout-container'>
+		<div className={classes.appLayoutContainer}>
 			<Navbar />
 			<Outlet />
 		</div>
