@@ -34,12 +34,14 @@
 .loginForm input[type="password"] {
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--border-color);
+	background-color: var(--bg-color);
+	color: var(--text-color);
   outline: none;
 }
 
 .loginForm input:focus {
-  border-color: var(--accent);
+  border-color: var(--border-accent);
 }
 
 .remember {

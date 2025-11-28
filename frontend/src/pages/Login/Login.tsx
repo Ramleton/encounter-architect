@@ -15,7 +15,7 @@ export default function Login() {
 	const navigate = useNavigate()
 
 	const bgColor = theme.colors.gray[3]
-	const boxColor = theme.colors.gray[0]
+	const boxColor = theme.colors.gray[1]
 	const textColor = theme.colors.text
 	const inputBg = theme.colors.gray[2]
 	const inputBorder = theme.colors.gray[4]
@@ -93,10 +93,11 @@ export default function Login() {
 						onChange={e => setEmail(e.target.value)}
 						required
 						style={{
-							backgroundColor: inputBg,
-							borderColor: inputBorder,
-							color: textColor
-						}}
+							'--bg-color': inputBg,
+							'--border-color': inputBorder,
+							'--color': textColor,
+							'--border-accent': buttonHover
+						} as React.CSSProperties}
 					/>
 
 					<label
@@ -111,10 +112,11 @@ export default function Login() {
 						onChange={e => setPassword(e.target.value)}
 						required
 						style={{
-							backgroundColor: inputBg,
-							borderColor: inputBorder,
-							color: textColor
-						}}
+							'--bg-color': inputBg,
+							'--border-color': inputBorder,
+							'--color': textColor,
+							'--border-accent': buttonHover
+						} as React.CSSProperties}
 					/>
 
 					<div className={classes.remember}>
