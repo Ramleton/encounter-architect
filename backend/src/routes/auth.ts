@@ -24,20 +24,22 @@ router.post('/login', async (req, res) => {
 router.post('/signup', async (req, res) => {
 	const { email, password, username } = req.body
 
+	console.log(req.body)
+
 	try {
 		const { data, error } = await supabase.auth.signUp({
 			email,
 			password,
 			options: {
 				data: {
-					username
+					display_name: username
 				}
 			}
 		})
 
 		if (error) return res.status(400).json({ error: error.message })
 		
-		return res.json({ user: data.user })
+		return res.status(200).json({ message: "Signup successful" })
 	} catch (err) {
 		console.error(err)
 		return res.status(500).json({ error: 'Internal server error' })

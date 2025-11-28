@@ -5,7 +5,7 @@ import useTheme from '../../hooks/useTheme'
 import classes from './Signup.module.css'
 
 export default function Signup() {
-	const { login } = useAuth()
+	const { register } = useAuth()
 	const [email, setEmail] = useState<string>('')
 	const [username, setUsername] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
@@ -42,8 +42,8 @@ export default function Signup() {
 		setLoading(true)
 		try {
 			if (isValidInput()) {
-				await login(email, password)
-				await navigate({ to: '/' })
+				await register(email, password, username)
+				await navigate({ to: '/login' })
 			}
 		} catch (err) {
 			console.error(err)

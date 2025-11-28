@@ -38,8 +38,12 @@ export default function Login() {
 		setLoading(true)
 		try {
 			if (isValidInput()) {
-				await login(email, password)
-				await navigate({ to: '/' })
+				try {
+					await login(email, password)
+					await navigate({ to: '/' })
+				} catch (err) {
+					setErrors([`Login failed: ${(err as Error).message}`])
+				}
 			}
 		} catch (err) {
 			console.error(err)
