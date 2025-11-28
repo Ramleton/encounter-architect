@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import useTheme from '../../hooks/useTheme'
@@ -11,6 +12,7 @@ export default function Login() {
 	const [errors, setErrors] = useState<string[]>([])
 
 	const { theme } = useTheme()
+	const navigate = useNavigate()
 
 	const bgColor = theme.colors.gray[3]
 	const boxColor = theme.colors.gray[0]
@@ -35,7 +37,10 @@ export default function Login() {
 	const handleSubmit = async () => {
 		setLoading(true)
 		try {
-			if (isValidInput()) await login(email, password)
+			if (isValidInput()) {
+				await login(email, password)
+				await navigate({ to: '/' })
+			}
 		} catch (err) {
 			console.error(err)
 		} finally {
