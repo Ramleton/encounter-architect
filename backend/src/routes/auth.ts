@@ -38,7 +38,8 @@ router.post('/signup', async (req, res) => {
 
 		if (error) return res.status(400).json({ error: error.message })
 
-		if (data?.user?.user_metadata?.email_verified === undefined) return res.status(409).json({ error: 'Email already in use' })
+		if (data?.user?.user_metadata?.email_verified === undefined)
+			return res.status(409).json({ error: 'Email already in use' })
 		
 		return res.status(201).json({ message: "Signup successful" })
 	} catch (err) {
