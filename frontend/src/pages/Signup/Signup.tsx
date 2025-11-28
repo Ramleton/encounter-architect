@@ -2,11 +2,12 @@ import { Link, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import useTheme from '../../hooks/useTheme'
-import classes from './Login.module.css'
+import classes from './Signup.module.css'
 
-export default function Login() {
+export default function Signup() {
 	const { login } = useAuth()
 	const [email, setEmail] = useState<string>('')
+	const [username, setUsername] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
 	const [loading, setLoading] = useState<boolean>(false)
 	const [errors, setErrors] = useState<string[]>([])
@@ -26,6 +27,9 @@ export default function Login() {
 		const validationErrors: string[] = []
 		if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
 			validationErrors.push('Please enter a valid email address.')
+		}
+		if (username.length < 3) {
+			validationErrors.push('Username must be at least 3 characters long.')
 		}
 		if (password.length < 8) {
 			validationErrors.push('Password must be at least 8 characters long.')
@@ -65,7 +69,7 @@ export default function Login() {
 					className={classes.loginTitle}
 					style={{ color: textColor }}
 				>
-					Welcome Back
+					Sign Up
 				</h1>
 
 				<form
@@ -101,6 +105,25 @@ export default function Login() {
 					/>
 
 					<label
+						htmlFor='username'
+						style={{ color: textColor }}
+					>Username
+					</label>
+					<input
+						id='username'
+						type='text'
+						value={username}
+						onChange={e => setUsername(e.target.value)}
+						required
+						style={{
+							'--bg-color': inputBg,
+							'--border-color': inputBorder,
+							'--text-color': textColor,
+							'--border-accent': buttonHover
+						} as React.CSSProperties}
+					/>
+
+					<label
 						htmlFor='password'
 						style={{ color: textColor }}
 					>Password
@@ -119,18 +142,6 @@ export default function Login() {
 						} as React.CSSProperties}
 					/>
 
-					<div className={classes.remember}>
-						<input
-							type='checkbox'
-							id='remember'
-						/>
-						<label
-							htmlFor='remember'
-							style={{ color: textColor }}
-						>Remember me
-						</label>
-					</div>
-
 					<button
 						type='submit'
 						disabled={loading}
@@ -140,15 +151,15 @@ export default function Login() {
 							'--hover-bg': buttonHover
 						} as React.CSSProperties}
 					>
-						{loading ? 'Logging in...' : 'Login'}
+						{loading ? 'Signing up...' : 'Sign Up'}
 					</button>
 				</form>
 
 				<div className={classes.links}>
 					<Link
-						to='/signup'
+						to='/login'
 						style={{ color: textColor }}
-					>Register
+					>Login
 					</Link>
 					<Link
 						to='/login' // TODO: implement forgot password

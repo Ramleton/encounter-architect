@@ -4,7 +4,11 @@ import classes from './AppLayout.module.css'
 
 export default function AppLayout() {
 	const location = useLocation()
-	const noLayoutRoutes = ['/login']
+	const noLayoutRoutes = [
+		'/login',
+		'/signup',
+		'/forgot-password'
+	]
 
 	if (noLayoutRoutes.includes(location.pathname)) {
 		return (
