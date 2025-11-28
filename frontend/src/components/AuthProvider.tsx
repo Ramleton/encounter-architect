@@ -22,10 +22,6 @@ function AuthProvider({ children }: { children: ReactNode }) {
 			const err = await res.json() as { error: string }
 			throw new Error(err.error || 'Signup failed')
 		}
-
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-		const data = await res.json()
-		console.log(data)
 	}
 
 	const login = async (email: string, password: string) => {

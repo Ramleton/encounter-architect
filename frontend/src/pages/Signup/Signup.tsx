@@ -42,8 +42,12 @@ export default function Signup() {
 		setLoading(true)
 		try {
 			if (isValidInput()) {
-				await register(email, password, username)
-				await navigate({ to: '/login' })
+				try {
+					await register(email, password, username)
+					await navigate({ to: '/login' })
+				} catch (err) {
+					setErrors([`Signup failed: ${(err as Error).message}`])
+				}
 			}
 		} catch (err) {
 			console.error(err)
