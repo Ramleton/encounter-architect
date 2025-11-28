@@ -34,8 +34,6 @@ router.post('/signup', async (req, res) => {
 			}
 		})
 
-		console.log(data, error)
-
 		if (error) return res.status(400).json({ error: error.message })
 
 		if (data?.user?.user_metadata?.email_verified === undefined)
