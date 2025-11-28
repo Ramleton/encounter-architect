@@ -1,7 +1,8 @@
-import { Link, useRouterState } from '@tanstack/react-router'
+import { Link, useNavigate, useRouterState } from '@tanstack/react-router'
 import { FaHome, FaMoon, FaSun } from 'react-icons/fa'
 import { FaArrowRightArrowLeft, FaGear, FaPerson } from 'react-icons/fa6'
 import { GiDiceTwentyFacesTwenty, GiFangsCircle } from 'react-icons/gi'
+import useAuth from '../../hooks/useAuth'
 import useTheme from '../../hooks/useTheme'
 import classes from './Navbar.module.css'
 
@@ -80,6 +81,13 @@ const navButtons = [
 
 export default function Navbar() {
 	const { themeMode, theme, toggleTheme } = useTheme()
+	const { logout } = useAuth()
+	const navigate = useNavigate()
+
+	const handleSwitchAccounts = async () => {
+		await logout()
+		await navigate({ to: '/login' })
+	}
 
 	return (
 		<div
@@ -107,7 +115,10 @@ export default function Navbar() {
 						<div
 							className={classes.navbarButton}
 							onClick={toggleTheme}
-							onKeyDown={toggleTheme}
+							onKeyDown={e => {
+								if (e.key === 'Enter' || e.key === ' ')
+									toggleTheme()
+							}}
 							role='button'
 							tabIndex={0}
 							style={{
@@ -131,7 +142,16 @@ export default function Navbar() {
 						<span className={classes.tooltip}>Toggle Theme</span>
 					</div>
 
-					<div className={classes.navbarButtonWrapper}>
+					<div
+						className={classes.navbarButtonWrapper}
+						onClick={() => void handleSwitchAccounts()}
+						onKeyDown={e => {
+							if (e.key === 'Enter' || e.key === ' ')
+								void handleSwitchAccounts()
+						}}
+						role='button'
+						tabIndex={0}
+					>
 						<div
 							className={classes.navbarButton}
 							style={{
