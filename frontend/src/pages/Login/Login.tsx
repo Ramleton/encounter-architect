@@ -95,7 +95,7 @@ export default function Login() {
 						style={{
 							'--bg-color': inputBg,
 							'--border-color': inputBorder,
-							'--color': textColor,
+							'--text-color': textColor,
 							'--border-accent': buttonHover
 						} as React.CSSProperties}
 					/>
@@ -114,7 +114,7 @@ export default function Login() {
 						style={{
 							'--bg-color': inputBg,
 							'--border-color': inputBorder,
-							'--color': textColor,
+							'--text-color': textColor,
 							'--border-accent': buttonHover
 						} as React.CSSProperties}
 					/>
@@ -136,7 +136,7 @@ export default function Login() {
 						disabled={loading}
 						style={{
 							'--bg-color': buttonBg,
-							'--color': textColor,
+							'--text-color': theme.colors.gray[1],
 							'--hover-bg': buttonHover
 						} as React.CSSProperties}
 					>
