@@ -1,11 +1,13 @@
-import express, { type Request, type Response } from 'express'
+import 'dotenv/config'
+import express from 'express'
+
+import authRouter from './routes/auth'
 
 const app = express()
 app.use(express.json())
 
-app.get('/', (req: Request, res: Response) => {
-	res.send('Hello, World!')
-})
+// Routes
+app.use('/auth', authRouter)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {

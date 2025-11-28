@@ -6,11 +6,21 @@ function AuthProvider({ children }: { children: ReactNode }) {
 	const [user, setUser] = useState<User | null>(null)
 	const [loading, setLoading] = useState<boolean>(false)
 
-	// eslint-disable-next-line @typescript-eslint/require-await
 	const login = async (email: string, password: string) => {
-		const fakeUser = { id: '1', email: email, username: 'testuser' }
-		localStorage.setItem('user', JSON.stringify(fakeUser))
-		setUser(fakeUser)
+		const res = await fetch('/auth/login', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ email, password })
+		})
+
+		if (!res.ok) {
+			const err = await res.json() as { error: string }
+			throw new Error(err.error || 'Login failed')
+		}
+
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		const data = await res.json()
+		console.log(data)
 	}
 
 	// eslint-disable-next-line @typescript-eslint/require-await
