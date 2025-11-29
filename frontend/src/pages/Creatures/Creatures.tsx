@@ -1,11 +1,16 @@
 import { useState } from 'react'
+import DualKnobSlider from '../../components/Creatures/DualKnobSlider'
 import useTheme from '../../hooks/useTheme'
-import { challengeRatings, creatureTypes, type ChallengeRating, type CreatureType } from '../../types/creatures'
+import { challengeRatings, creatureTypes, type ChallengeRating, type ChallengeRatingNumeric, type CreatureType } from '../../types/creatures'
+import { crToNumber } from '../../utils/creatures'
 import styles from './Creatures.module.css'
 
 interface Filters {
 	type: CreatureType | 'All'
-	challengeRating: ChallengeRating | 'All'
+	challengeRating: {
+		min: ChallengeRatingNumeric
+		max: ChallengeRatingNumeric
+	}
 }
 
 export default function Creatures() {
@@ -14,10 +19,18 @@ export default function Creatures() {
 	const [search, setSearch] = useState('')
 	const [filters, setFilters] = useState<Filters>({
 		type: 'All',
-		challengeRating: 'All'
+		challengeRating: {
+			min: 0,
+			max: 30
+		}
 	})
 
-	const creatures = [
+	const creatures: {
+		id: number
+		name: string
+		type: CreatureType
+		cr: ChallengeRating
+	}[] = [
 		{ id: 1, name: 'Frostfang Wolf', type: 'Beast', cr: '1/2' },
 		{ id: 2, name: 'Ashen Drake', type: 'Dragon', cr: '6' },
 		{ id: 3, name: 'Bog Creeper', type: 'Aberration', cr: '2' }
@@ -29,7 +42,7 @@ export default function Creatures() {
 				|| c.type.toLowerCase().includes(search.toLowerCase())
 
 		const matchesType = filters.type !== 'All' && c.type === filters.type
-		const matchesCR = filters.challengeRating !== 'All' && c.cr === filters.challengeRating
+		const matchesCR = filters.challengeRating.min <= crToNumber(c.cr) && crToNumber(c.cr) <= filters.challengeRating.max
 
 		return matchesSearch && matchesType && matchesCR
 	})
@@ -40,11 +53,7 @@ export default function Creatures() {
 		</option>
 	))
 
-	const creatureCROptions = [...challengeRatings, 'All'].map(cr => (
-		<option key={cr} value={cr}>
-			{cr}
-		</option>
-	))
+	const crSteps = challengeRatings.map(cr => ({ value: crToNumber(cr), label: cr }))
 
 	// Create CSS variables dynamically
 	const themeVars = {
@@ -62,14 +71,16 @@ export default function Creatures() {
 		<div className={styles.container} style={themeVars}>
 			{/* Sidebar */}
 			<aside className={styles.sidebar}>
-				<h2>Filters</h2>
+				<h2 className={styles.filterTitle}>Filters</h2>
 
 				<div className={styles.filterGroup}>
 					<label htmlFor='type'>Creature Type</label>
 					<select
 						id='type'
+						className={styles.select}
 						value={filters.type}
-						onChange={e => setFilters(f => ({ ...f, type: e.target.value as CreatureType | 'All' }))}
+						onChange={e =>
+							setFilters(f => ({ ...f, type: e.target.value as CreatureType | 'All' }))}
 					>
 						{creatureTypeOptions}
 					</select>
@@ -77,15 +88,21 @@ export default function Creatures() {
 
 				<div className={styles.filterGroup}>
 					<label htmlFor='cr'>Challenge Rating</label>
-					<select
-						id='cr'
-						value={filters.challengeRating}
-						onChange={e =>
-							setFilters(f => ({ ...f, challenge: e.target.value }))}
-					>
-						{creatureCROptions}
-					</select>
+					<DualKnobSlider
+						steps={crSteps}
+						value={[filters.challengeRating.min, filters.challengeRating.max]}
+						onChange={vals =>
+							setFilters(f => ({
+								...f,
+								challengeRating: {
+									min: vals[0] as ChallengeRatingNumeric,
+									max: vals[1] as ChallengeRatingNumeric
+								}
+							}))}
+					/>
+
 				</div>
+
 			</aside>
 
 			{/* Main Content */}

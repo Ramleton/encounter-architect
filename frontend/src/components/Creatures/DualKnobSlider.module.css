@@ -1,0 +1,42 @@
+.container {
+  padding: 1rem 1rem;
+  user-select: none;
+  position: relative;
+}
+
+.track {
+  position: relative;
+  height: 6px;
+  border-radius: 3px;
+  background-color: #ccc; /* fallback, overridden by inline theme color */
+  margin: 1rem 0;
+}
+
+.range {
+  position: absolute;
+  height: 100%;
+  border-radius: 3px;
+  background-color: #00f; /* fallback, overridden by inline theme color */
+}
+
+.knob {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--accent); /* fallback, overridden by inline theme color */
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  color: var(--text);
+}

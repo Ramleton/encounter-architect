@@ -10,19 +10,57 @@
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* Sidebar Container */
 .sidebar {
-  background: var(--gray-1);
-  border: 1px solid var(--gray-3);
-  border-radius: 12px;
-  padding: 16px;
+	width: 260px;
+	padding: 1.5rem;
+	border-right: 1px solid var(--gray-2);
+	background: var(--card-bg);
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+/* Title */
+.filterTitle {
+	font-size: 1.3rem;
+	font-weight: 600;
+	margin-bottom: -0.5rem;
+	color: var(--text);
+}
+
+/* Group Wrapper */
+.filterGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
 }
 
 .filterGroup label {
-  color: var(--text);
+	font-size: 1.2rem;
+	font-weight: 500;
+	color: var(--text);
 }
 
-.main {
-  flex: 1;
+/* Select Inputs */
+.select {
+	padding: 0.55rem 0.8rem;
+	border-radius: 8px;
+	border: 1px solid var(--gray-2);
+	background-color: var(--bg);
+	color: var(--text);
+	font-size: 0.95rem;
+	transition: 150ms ease;
+}
+
+.select:hover {
+	border-color: var(--primary-light);
+}
+
+.select:focus {
+	outline: none;
+	border-color: var(--primary);
+	box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
 .header {
