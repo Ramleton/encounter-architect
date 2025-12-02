@@ -1,42 +1,54 @@
 .container {
-  padding: 1rem 1rem;
-  user-select: none;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 6px;
 }
 
 .track {
   position: relative;
-  height: 6px;
-  border-radius: 3px;
-  background-color: #ccc; /* fallback, overridden by inline theme color */
-  margin: 1rem 0;
+  height: 8px;
+  border-radius: 9999px;
+  cursor: pointer;
+  touch-action: none;
+  border: 1px solid var(--track-border);
+  background-color: var(--track-bg);
 }
 
 .range {
   position: absolute;
-  height: 100%;
-  border-radius: 3px;
-  background-color: #00f; /* fallback, overridden by inline theme color */
+  top: 0;
+  bottom: 0;
+  border-radius: 9999px;
 }
 
 .knob {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  border: 2px solid var(--accent); /* fallback, overridden by inline theme color */
-  background-color: #fff;
-  cursor: pointer;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-  z-index: 2;
+  border-width: 2px;
+  border-style: solid;
+  background-color: var(--knob-bg);
+  transition: border-color 0.15s, background-color 0.15s, box-shadow 0.15s;
+  box-shadow: 0 1px 3px var(--knob-shadow);
+  cursor: grab;
+  touch-action: none;
+}
+
+.knob:active {
+  cursor: grabbing;
+  box-shadow: 0 0 0 4px var(--knob-active-ring);
+}
+
+.knob:hover {
+  box-shadow: 0 0 0 3px var(--knob-active-ring);
 }
 
 .labels {
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
-  margin-top: 0.25rem;
-  color: var(--text);
+  font-size: 12px;
 }
