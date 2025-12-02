@@ -87,7 +87,11 @@ export default function Creatures() {
 				</div>
 
 				<div className={styles.filterGroup}>
-					<label htmlFor='cr'>Challenge Rating</label>
+					<label
+						htmlFor='cr'
+						style={{ marginBottom: '0.5rem' }}
+					>Challenge Rating
+					</label>
 					<DualKnobSlider
 						steps={crSteps}
 						value={[filters.challengeRating.min, filters.challengeRating.max]}
