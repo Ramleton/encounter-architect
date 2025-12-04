@@ -2,12 +2,11 @@ import { Link, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import useTheme from '../../hooks/useTheme'
-import classes from './Login.module.css'
+import classes from './ForgotPassword.module.css'
 
-export default function Login() {
+export default function ForgotPassword() {
 	const { login } = useAuth()
 	const [email, setEmail] = useState<string>('')
-	const [password, setPassword] = useState<string>('')
 	const [loading, setLoading] = useState<boolean>(false)
 	const [errors, setErrors] = useState<string[]>([])
 
@@ -27,23 +26,16 @@ export default function Login() {
 		if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
 			validationErrors.push('Please enter a valid email address.')
 		}
-		if (password.length < 8) {
-			validationErrors.push('Password must be at least 8 characters long.')
-		}
 		setErrors(validationErrors)
 		return validationErrors.length === 0
 	}
 
+	// eslint-disable-next-line @typescript-eslint/require-await
 	const handleSubmit = async () => {
 		setLoading(true)
 		try {
 			if (isValidInput()) {
-				try {
-					await login(email, password)
-					await navigate({ to: '/' })
-				} catch (err) {
-					setErrors([`Login failed: ${(err as Error).message}`])
-				}
+				// TODO: Send forgot password email
 			}
 		} catch (err) {
 			console.error(err)
@@ -54,22 +46,22 @@ export default function Login() {
 
 	return (
 		<div
-			className={classes.loginContainer}
+			className={classes.forgotContainer}
 			style={{
 				backgroundColor: bgColor
 			}}
 		>
 			<div
-				className={classes.loginBox}
+				className={classes.forgotBox}
 				style={{
 					backgroundColor: boxColor
 				}}
 			>
 				<h1
-					className={classes.loginTitle}
+					className={classes.forgotTitle}
 					style={{ color: textColor }}
 				>
-					Welcome Back
+					Forgot Password?
 				</h1>
 
 				<form
@@ -77,7 +69,7 @@ export default function Login() {
 						e.preventDefault()
 						void handleSubmit()
 					}}
-					className={classes.loginForm}
+					className={classes.forgotForm}
 				>
 					<div className={classes.errorContainer}>
 						{errors.length > 0 && (errors.map((error, index) => (
@@ -104,37 +96,6 @@ export default function Login() {
 						} as React.CSSProperties}
 					/>
 
-					<label
-						htmlFor='password'
-						style={{ color: textColor }}
-					>Password
-					</label>
-					<input
-						id='password'
-						type='password'
-						value={password}
-						onChange={e => setPassword(e.target.value)}
-						required
-						style={{
-							'--bg-color': inputBg,
-							'--border-color': inputBorder,
-							'--text-color': textColor,
-							'--border-accent': buttonHover
-						} as React.CSSProperties}
-					/>
-
-					<div className={classes.remember}>
-						<input
-							type='checkbox'
-							id='remember'
-						/>
-						<label
-							htmlFor='remember'
-							style={{ color: textColor }}
-						>Remember me
-						</label>
-					</div>
-
 					<button
 						type='submit'
 						disabled={loading}
@@ -144,7 +105,7 @@ export default function Login() {
 							'--hover-bg': buttonHover
 						} as React.CSSProperties}
 					>
-						{loading ? 'Logging in...' : 'Login'}
+						{loading ? 'Sending email...' : 'Submit'}
 					</button>
 				</form>
 
@@ -155,9 +116,9 @@ export default function Login() {
 					>Register
 					</Link>
 					<Link
-						to='/forgotPassword' // TODO: implement forgot password
+						to='/login'
 						style={{ color: textColor }}
-					>Forgot password?
+					>Login
 					</Link>
 				</div>
 			</div>

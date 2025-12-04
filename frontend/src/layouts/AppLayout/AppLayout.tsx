@@ -7,7 +7,7 @@ export default function AppLayout() {
 	const noLayoutRoutes = [
 		'/login',
 		'/signup',
-		'/forgot-password'
+		'/forgotPassword'
 	]
 
 	if (noLayoutRoutes.includes(location.pathname)) {
