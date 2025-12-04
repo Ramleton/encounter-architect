@@ -46,4 +46,19 @@ router.post('/signup', async (req, res) => {
 	}
 })
 
+router.post('/resetPassword', async (req, res) => {
+	const { email } = req.body
+
+	try {
+		const { data, error } = await supabase.auth.resetPasswordForEmail(email)
+
+		if (error) return res.status(400).json({ error: error.message })
+
+		res.json({ message: 'Password reset email sent' })
+	} catch (err) {
+		console.error(err)
+		return res.status(500).json({ error: 'Internal server error' })	
+	}
+})
+
 export default router

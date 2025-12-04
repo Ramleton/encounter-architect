@@ -1,17 +1,17 @@
-import { Link, useNavigate } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import useTheme from '../../hooks/useTheme'
 import classes from './ForgotPassword.module.css'
 
 export default function ForgotPassword() {
-	const { login } = useAuth()
+	const { resetPassword } = useAuth()
 	const [email, setEmail] = useState<string>('')
 	const [loading, setLoading] = useState<boolean>(false)
 	const [errors, setErrors] = useState<string[]>([])
+	const [message, setMessage] = useState<string>('')
 
 	const { theme } = useTheme()
-	const navigate = useNavigate()
 
 	const bgColor = theme.colors.gray[3]
 	const boxColor = theme.colors.gray[1]
@@ -30,12 +30,16 @@ export default function ForgotPassword() {
 		return validationErrors.length === 0
 	}
 
-	// eslint-disable-next-line @typescript-eslint/require-await
 	const handleSubmit = async () => {
 		setLoading(true)
 		try {
 			if (isValidInput()) {
-				// TODO: Send forgot password email
+				try {
+					await resetPassword(email)
+					setMessage('Password reset email sent')
+				} catch (err) {
+					setErrors([`Reset password failed: ${(err as Error).message}`])
+				}
 			}
 		} catch (err) {
 			console.error(err)
@@ -75,6 +79,10 @@ export default function ForgotPassword() {
 						{errors.length > 0 && (errors.map((error, index) => (
 							<p key={index} className={classes.error}>{error}</p>
 						)))}
+					</div>
+
+					<div className={classes.message}>
+						{message && <p>{message}</p>}
 					</div>
 
 					<label

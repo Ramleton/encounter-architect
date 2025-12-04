@@ -45,13 +45,26 @@ function AuthProvider({ children }: { children: ReactNode }) {
 		})
 	}
 
+	const resetPassword = async (email: string) => {
+		const res = await fetch(`${BASE_URL}/auth/resetPassword`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ email })
+		})
+
+		if (!res.ok) {
+			const err = await res.json() as { error: string }
+			throw new Error(err.error || 'Reset password failed')
+		}
+	}
+
 	// eslint-disable-next-line @typescript-eslint/require-await
 	const logout = async () => {
 		localStorage.removeItem('user')
 		setUser(null)
 	}
 
-	const value = { user, loading, login, register, logout }
+	const value = { user, loading, login, register, resetPassword, logout }
 
 	return (
 		<AuthContext.Provider value={value}>
