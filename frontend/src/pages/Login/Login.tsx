@@ -1,7 +1,6 @@
 import { Link, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import useAuth from '../../hooks/useAuth'
-import useTheme from '../../hooks/useTheme'
 import classes from './Login.module.css'
 
 export default function Login() {
@@ -11,16 +10,7 @@ export default function Login() {
 	const [loading, setLoading] = useState<boolean>(false)
 	const [errors, setErrors] = useState<string[]>([])
 
-	const { theme } = useTheme()
 	const navigate = useNavigate()
-
-	const bgColor = theme.colors.gray[3]
-	const boxColor = theme.colors.gray[1]
-	const textColor = theme.colors.text
-	const inputBg = theme.colors.gray[2]
-	const inputBorder = theme.colors.gray[4]
-	const buttonBg = theme.colors.accent[5]
-	const buttonHover = theme.colors.accent[4]
 
 	const isValidInput = (): boolean => {
 		const validationErrors: string[] = []
@@ -55,19 +45,12 @@ export default function Login() {
 	return (
 		<div
 			className={classes.loginContainer}
-			style={{
-				backgroundColor: bgColor
-			}}
 		>
 			<div
 				className={classes.loginBox}
-				style={{
-					backgroundColor: boxColor
-				}}
 			>
 				<h1
 					className={classes.loginTitle}
-					style={{ color: textColor }}
 				>
 					Welcome Back
 				</h1>
@@ -85,28 +68,17 @@ export default function Login() {
 						)))}
 					</div>
 
-					<label
-						htmlFor='email'
-						style={{ color: textColor }}
-					>Email
-					</label>
+					<label htmlFor='email'>Email</label>
 					<input
 						id='email'
 						type='email'
 						value={email}
 						onChange={e => setEmail(e.target.value)}
 						required
-						style={{
-							'--bg-color': inputBg,
-							'--border-color': inputBorder,
-							'--text-color': textColor,
-							'--border-accent': buttonHover
-						} as React.CSSProperties}
 					/>
 
 					<label
 						htmlFor='password'
-						style={{ color: textColor }}
 					>Password
 					</label>
 					<input
@@ -115,12 +87,6 @@ export default function Login() {
 						value={password}
 						onChange={e => setPassword(e.target.value)}
 						required
-						style={{
-							'--bg-color': inputBg,
-							'--border-color': inputBorder,
-							'--text-color': textColor,
-							'--border-accent': buttonHover
-						} as React.CSSProperties}
 					/>
 
 					<div className={classes.remember}>
@@ -128,21 +94,12 @@ export default function Login() {
 							type='checkbox'
 							id='remember'
 						/>
-						<label
-							htmlFor='remember'
-							style={{ color: textColor }}
-						>Remember me
-						</label>
+						<label htmlFor='remember'>Remember me</label>
 					</div>
 
 					<button
 						type='submit'
 						disabled={loading}
-						style={{
-							'--bg-color': buttonBg,
-							'--text-color': theme.colors.gray[1],
-							'--hover-bg': buttonHover
-						} as React.CSSProperties}
 					>
 						{loading ? 'Logging in...' : 'Login'}
 					</button>
@@ -151,12 +108,10 @@ export default function Login() {
 				<div className={classes.links}>
 					<Link
 						to='/signup'
-						style={{ color: textColor }}
 					>Register
 					</Link>
 					<Link
-						to='/forgotPassword' // TODO: implement forgot password
-						style={{ color: textColor }}
+						to='/forgotPassword'
 					>Forgot password?
 					</Link>
 				</div>

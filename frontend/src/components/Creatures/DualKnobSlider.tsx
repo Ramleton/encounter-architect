@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import useTheme from '../../hooks/useTheme'
 import classes from './DualKnobSlider.module.css'
 
 function getKnobZIndices<T>(steps: Step<T>[], value: [T, T]) {
@@ -35,7 +34,6 @@ export default function DualKnobSliderProps<T extends number | string>({
 	value,
 	onChange
 }: DualKnobSliderProps<T>) {
-	const { theme } = useTheme()
 	const trackRef = useRef<HTMLDivElement>(null)
 	const activeKnob = useRef<'min' | 'max' | null>(null)
 	const { minZ, maxZ } = getKnobZIndices(steps, value)
@@ -91,10 +89,6 @@ export default function DualKnobSliderProps<T extends number | string>({
 			<div
 				ref={trackRef}
 				className={classes.track}
-				style={{
-					'--track-border': theme.colors.gray[4],
-					'--track-bg': theme.colors.gray[3]
-				} as React.CSSProperties}
 				onPointerMove={handleMove}
 				onPointerUp={handleEnd}
 				onPointerLeave={handleEnd}
@@ -146,24 +140,15 @@ export default function DualKnobSliderProps<T extends number | string>({
 					style={{
 						left: `${percent(value[0])}%`,
 						right: `${100 - percent(value[1])}%`,
-						backgroundColor: theme.colors.primary[5]
+						backgroundColor: 'var(--primary-5)'
 					}}
 				/>
 				{/* Min knob */}
 				<div
 					className={classes.knob}
 					style={{
-						'left': `${percent(value[0])}%`,
-						'borderColor': theme.colors.primary[5],
-						'backgroundColor': theme.colors.background,
-						'zIndex': minZ,
-						'--knob-bg': theme.colors.background,
-						'--knob-active-ring': theme.mode === 'dark'
-							? theme.colors.gray[6]
-							: theme.colors.gray[7],
-						'--knob-shadow': theme.mode === 'dark'
-							? theme.colors.gray[7]
-							: theme.colors.gray[6]
+						zIndex: minZ,
+						left: `${percent(value[0])}%`
 					} as React.CSSProperties}
 					onPointerDown={e => handleStart(e, 'min')}
 				/>
@@ -171,17 +156,8 @@ export default function DualKnobSliderProps<T extends number | string>({
 				<div
 					className={classes.knob}
 					style={{
-						'left': `${percent(value[1])}%`,
-						'borderColor': theme.colors.primary[5],
-						'backgroundColor': theme.colors.background,
-						'zIndex': maxZ,
-						'--knob-bg': theme.colors.background,
-						'--knob-active-ring': theme.mode === 'dark'
-							? theme.colors.gray[6]
-							: theme.colors.gray[7],
-						'--knob-shadow': theme.mode === 'dark'
-							? theme.colors.gray[7]
-							: theme.colors.gray[6]
+						zIndex: maxZ,
+						left: `${percent(value[1])}%`
 					} as React.CSSProperties}
 					onPointerDown={e => handleStart(e, 'max')}
 				/>

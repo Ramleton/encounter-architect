@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import DualKnobSlider from '../../components/Creatures/DualKnobSlider'
-import useTheme from '../../hooks/useTheme'
 import { challengeRatings, creatureTypes, type ChallengeRating, type ChallengeRatingNumeric, type CreatureType } from '../../types/creatures'
 import { crToNumber } from '../../utils/creatures'
 import styles from './Creatures.module.css'
@@ -14,8 +13,6 @@ interface Filters {
 }
 
 export default function Creatures() {
-	const { theme } = useTheme()
-
 	const [search, setSearch] = useState('')
 	const [filters, setFilters] = useState<Filters>({
 		type: 'All',
@@ -55,20 +52,8 @@ export default function Creatures() {
 
 	const crSteps = challengeRatings.map(cr => ({ value: crToNumber(cr), label: cr }))
 
-	// Create CSS variables dynamically
-	const themeVars = {
-		'--bg': theme.colors.background,
-		'--text': theme.colors.text,
-		'--gray-1': theme.colors.gray[1],
-		'--gray-2': theme.colors.gray[2],
-		'--gray-3': theme.colors.gray[3],
-		'--primary': theme.colors.primary[5],
-		'--primary-light': theme.colors.primary[3],
-		'--card-bg': theme.mode === 'light' ? '#fff' : theme.colors.gray[0]
-	} as React.CSSProperties
-
 	return (
-		<div className={styles.container} style={themeVars}>
+		<div className={styles.container}>
 			{/* Sidebar */}
 			<aside className={styles.sidebar}>
 				<h2 className={styles.filterTitle}>Filters</h2>

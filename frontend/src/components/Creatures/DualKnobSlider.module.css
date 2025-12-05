@@ -11,8 +11,9 @@
   border-radius: 9999px;
   cursor: pointer;
   touch-action: none;
-  border: 1px solid var(--track-border);
-  background-color: var(--track-bg);
+  border: 1px solid var(--gray-3);
+  background-color: var(--gray-2);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .range {
@@ -20,6 +21,8 @@
   top: 0;
   bottom: 0;
   border-radius: 9999px;
+  background-color: var(--primary);
+  transition: background-color 0.2s ease;
 }
 
 .knob {
@@ -31,20 +34,21 @@
   border-radius: 50%;
   border-width: 2px;
   border-style: solid;
-  background-color: var(--knob-bg);
-  transition: border-color 0.15s, background-color 0.15s, box-shadow 0.15s;
-  box-shadow: 0 1px 3px var(--knob-shadow);
+  border-color: var(--primary);
+  background-color: var(--surface-2);
+  box-shadow: 0 1px 3px var(--gray-5);
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
   cursor: grab;
   touch-action: none;
 }
 
 .knob:active {
   cursor: grabbing;
-  box-shadow: 0 0 0 4px var(--knob-active-ring);
+  box-shadow: 0 0 0 4px var(--accent-2-alpha);
 }
 
 .knob:hover {
-  box-shadow: 0 0 0 3px var(--knob-active-ring);
+  box-shadow: 0 0 0 3px var(--accent-2-alpha);
 }
 
 .labels {
@@ -52,4 +56,5 @@
   justify-content: space-between;
   font-size: 16px;
   font-weight: 500;
+  color: var(--text);
 }

@@ -9,6 +9,8 @@ export type Theme = {
 		gray: string[]
 		background: string
 		text: string
+		tooltipBg: string
+		tooltipText: string
 	}
 }
 
@@ -64,7 +66,9 @@ export const lightTheme: Theme = {
 			'#18181b'
 		],
 		background: '#ffffff',
-		text: '#111111'
+		text: '#111111',
+		tooltipBg: '#18181b',
+		tooltipText: '#fafafa'
 	}
 }
 
@@ -120,6 +124,8 @@ export const darkTheme: Theme = {
 			'#fafafa'
 		],
 		background: '#0d0d0f',
-		text: '#f5f5f5'
+		text: '#f5f5f5',
+		tooltipBg: '#fafafa',
+		tooltipText: '#18181b'
 	}
 }

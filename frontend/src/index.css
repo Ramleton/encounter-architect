@@ -113,3 +113,132 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+:root[data-theme="light"] {
+	--bg: #fafafa;
+	--text: #111111;
+
+  /* Surface tokens */
+  --surface-1: #f4f4f5; /* subtle surfaces like minor panels */
+  --surface-2: #e5e7eb; /* primary surfaces like buttons, cards */
+  --surface-3: #d4d4d8; /* accents, borders, shadows */
+
+	/* Primary Scale */
+	--primary-0: #eef6ff;
+	--primary-1: #d9eaff;
+	--primary-2: #b3d4ff;
+	--primary-3: #8dbdff;
+	--primary-4: #66a6ff;
+	--primary-5: #408fff;
+	--primary-6: #1a78ff;
+	--primary-7: #005fde;
+	--primary-8: #0046a6;
+	--primary-9: #002f6f;
+
+	/* Secondary Scale */
+	--secondary-0: #fff8ea;
+	--secondary-1: #ffebc7;
+	--secondary-2: #ffd48a;
+	--secondary-3: #ffbe4d;
+	--secondary-4: #ffa616;
+	--secondary-5: #ff8c00;
+	--secondary-6: #db6f00;
+	--secondary-7: #b35300;
+	--secondary-8: #8c4000;
+	--secondary-9: #662e00;
+
+	/* Accent scale */
+	--accent-0: #e9fefa;
+	--accent-1: #ccfbf1;
+	--accent-2: #99f5de;
+  --accent-2-alpha: rgba(139, 245, 222, 0.3);
+	--accent-3: #66eec8;
+	--accent-4: #33e6b3;
+	--accent-5: #00dd9e;
+	--accent-6: #00b981;
+	--accent-7: #009466;
+	--accent-8: #006e4b;
+	--accent-9: #004830;
+
+	/* Gray scale */
+	--gray-0: #fafafa;
+	--gray-1: #f4f4f5;
+	--gray-2: #e5e7eb;
+	--gray-3: #d4d4d8;
+	--gray-4: #a1a1aa;
+	--gray-5: #71717a;
+	--gray-6: #52525b;
+	--gray-7: #3f3f46;
+	--gray-8: #27272a;
+	--gray-9: #18181b;
+
+	/* Specific roles */
+	--tooltip-bg: #18181b;
+	--tooltip-text: #fafafa;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="dark"] {
+	--bg: #111111;
+	--text: #fafafa;
+
+  /* Surface tokens */
+  --surface-1: #27272a; /* subtle surfaces */
+  --surface-2: #3f3f46; /* primary surfaces like buttons, cards */
+  --surface-3: #52525b; /* accents, borders, shadows */
+
+	/* Primary scale (reversed) */
+	--primary-0: #002f6f;
+	--primary-1: #0046a6;
+	--primary-2: #005fde;
+	--primary-3: #1a78ff;
+	--primary-4: #408fff;
+	--primary-5: #66a6ff;
+	--primary-6: #8dbdff;
+	--primary-7: #b3d4ff;
+	--primary-8: #d9eaff;
+	--primary-9: #eef6ff;
+
+	/* Secondary scale (reversed) */
+	--secondary-0: #662e00;
+	--secondary-1: #8c4000;
+	--secondary-2: #b35300;
+	--secondary-3: #db6f00;
+	--secondary-4: #ff8c00;
+	--secondary-5: #ffa616;
+	--secondary-6: #ffbe4d;
+	--secondary-7: #ffd48a;
+	--secondary-8: #ffebc7;
+	--secondary-9: #fff8ea;
+
+	/* Accent scale (reversed) */
+	--accent-0: #004830;
+	--accent-1: #006e4b;
+	--accent-2: #009466;
+  --accent-2-alpha: rgba(0, 148, 102, 0.3);
+	--accent-3: #00b981;
+	--accent-4: #00dd9e;
+	--accent-5: #33e6b3;
+	--accent-6: #66eec8;
+	--accent-7: #99f5de;
+	--accent-8: #ccfbf1;
+	--accent-9: #e9fefa;
+
+	/* Gray scale (reversed) */
+	--gray-0: #18181b;
+	--gray-1: #27272a;
+	--gray-2: #3f3f46;
+	--gray-3: #52525b;
+	--gray-4: #71717a;
+	--gray-5: #a1a1aa;
+	--gray-6: #d4d4d8;
+	--gray-7: #e5e7eb;
+	--gray-8: #f4f4f5;
+	--gray-9: #fafafa;
+
+	/* Semantic role inversion */
+	--tooltip-bg: #fafafa; /* was dark → invert */
+	--tooltip-text: #18181b; /* was light → invert */
+  --shadow-color: rgba(0, 0, 0, 0.6);
+}

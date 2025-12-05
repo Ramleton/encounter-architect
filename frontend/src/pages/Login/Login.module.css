@@ -3,19 +3,25 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-	width: 100vw;
+  width: 100vw;
+  background-color: var(--surface-1);
+  color: var(--text);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .loginBox {
   padding: 3rem;
   border-radius: 1rem;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  background-color: var(--surface-2);
+  box-shadow: 0 4px 20px var(--shadow-color);
   width: 350px;
   text-align: center;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .loginTitle {
   margin-bottom: 1.5rem;
+  color: var(--text);
 }
 
 .loginForm {
@@ -34,22 +40,17 @@
 .loginForm input[type="password"] {
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--border-color);
-	background-color: var(--bg-color);
-	color: var(--text-color);
+  border: 1px solid var(--gray-3);
+  background-color: var(--surface-3); /* slightly lighter/darker than box for contrast */
+  color: var(--text);
   outline: none;
+  box-shadow: inset 0 0 5px var(--shadow-color);
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .loginForm input:focus {
-  border-color: var(--border-accent);
-}
-
-.remember {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--text);
+  border-color: var(--accent-4);
+  box-shadow: 0 0 0 3px var(--accent-2-alpha);
 }
 
 .loginForm button {
@@ -58,24 +59,26 @@
   border-radius: 0.5rem;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.2s ease;
-	background-color: var(--bg-color);
-	color: var(--text-color);
+  background-color: var(--accent-4);
+  color: var(--text);
+  box-shadow: 0 2px 6px var(--shadow-color);
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .loginForm button:hover,
 .loginForm button:focus {
-	background-color: var(--hover-bg);
-	outline: none;
+  background-color: var(--accent-5);
+  outline: none;
+  box-shadow: 0 4px 12px var(--shadow-color);
 }
 
 .errorContainer {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .error {
-  color: red;
+  color: var(--secondary-5);
   font-size: 0.9rem;
 }
 
@@ -88,8 +91,11 @@
 
 .links a {
   text-decoration: none;
+  color: var(--primary-5);
+  transition: color 0.2s ease;
 }
 
 .links a:hover {
   text-decoration: underline;
+  color: var(--primary-6);
 }
